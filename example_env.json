@@ -3,7 +3,9 @@
         "database": {
             "user": "postgres",
             "password": "1234",
-            "database": "budu"
+            "database": "budu",
+            "host": "localhost",
+            "port": 5432
         }
     }
 }
