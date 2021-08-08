@@ -1,10 +1,6 @@
 CREATE DATABASE budu;
 CREATE TABLE budjets(
-    budjetId SERIAL PRIMARY KEY,
-    budjetName VARCHAR(255),
-    initialAmount SERIAL,
-    costCentres TEXT[]
+    budjet_id SERIAL PRIMARY KEY,
+    budjet_name VARCHaR(50) UNIQUE NOT NULL,
+    budjet_balance SERIAL NOT NULL
 );
-
-INSERT INTO budjets(budjetid, budjetname, initialamount, costcentres)
-VALUES (0, "Testibudjetti", 100, '{"Ruoka", "Opiskelu"}');
