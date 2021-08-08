@@ -1,12 +1,19 @@
 import express, {Router, Request, Response} from "express";
 import Budjet from "./../models/budjet";
+import pool from "./../db/db";
 
 const budjetRouter = Router();
 
-budjetRouter.get("/", (request:Request, response:Response) => {
-    response.send("OK from /api/budjet");
-})
 
+
+budjetRouter.get("/", async (request:Request, response:Response) => {
+    try {
+        const budjets = await pool.query("SELECT * FROM budjets;");
+        response.json(budjets.rows[0]);
+    } catch (error) {
+        console.error(error);
+    };
+})
 budjetRouter.get("/:id", (request:Request, response:Response) => {
     const budjets:Budjet[] = [{
         budjetId: 0,
