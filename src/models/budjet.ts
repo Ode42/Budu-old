@@ -1,8 +1,7 @@
 interface Budjet {
-    budjetId:number
-    budjetName:string
-    initialAmount:number,
-    costCentres:string[],
+    budjet_id:number
+    budjet_name:string
+    budjet_amount:number,
 }
 
 export default Budjet;
