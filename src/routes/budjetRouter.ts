@@ -37,5 +37,15 @@ budjetRouter.post("/", async (request:Request, response:Response) => {
     }
 });
 
+budjetRouter.delete("/:budjet_id", async (request:Request, response:Response) => {
+    try {
+        const {budjet_id} = request.params;
+        const deleteBudjet = await pool.query("DELETE FROM budjets WHERE budjet_id = $1;", [budjet_id]);
+        response.json(deleteBudjet);
+    } catch (error) {
+        console.error(error);
+    }
+})
+
 
 export default budjetRouter;
