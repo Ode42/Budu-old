@@ -47,5 +47,16 @@ budjetRouter.delete("/:budjet_id", async (request:Request, response:Response) =>
     }
 })
 
+budjetRouter.put("/balance/:budjet_id", async (request:Request, response:Response) => {
+    try {
+        const {budjet_id} = request.params;
+        const {new_budjet_balance} = request.body;
+        const updateBudjet = await pool.query("UPDATE budjets SET budjet_balance = $1 WHERE budjet_id = $2", [new_budjet_balance, budjet_id]);
+        response.json(updateBudjet);
+    } catch (error) {
+        console.error(error);
+    }
+})
+
 
 export default budjetRouter;
