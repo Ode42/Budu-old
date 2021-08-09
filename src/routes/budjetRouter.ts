@@ -9,11 +9,11 @@ const budjetRouter = Router();
 budjetRouter.get("/", async (request:Request, response:Response) => {
     try {
         const budjets = await pool.query("SELECT * FROM budjets;");
-        response.json(budjets.rows);
+        response.json(budjets);
     } catch (error) {
         console.error(error);
     };
-})
+});
 
 budjetRouter.get("/:budjet_id", async (request:Request, response:Response) => {
     try {
@@ -24,7 +24,7 @@ budjetRouter.get("/:budjet_id", async (request:Request, response:Response) => {
         console.error(error);
         response.status(401);
     }
-})
+});
 
 budjetRouter.post("/", async (request:Request, response:Response) => {
     try {
