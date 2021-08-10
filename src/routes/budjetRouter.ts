@@ -9,7 +9,7 @@ const budjetRouter = Router();
 budjetRouter.get("/", async (request:Request, response:Response) => {
     try {
         const budjets = await pool.query("SELECT * FROM budjets;");
-        response.json(budjets);
+        response.json(budjets.rows[0]);
     } catch (error) {
         console.error(error);
     };
