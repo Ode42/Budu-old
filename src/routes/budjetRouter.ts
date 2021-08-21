@@ -4,8 +4,6 @@ import pool from "./../db/db";
 
 const budjetRouter = Router();
 
-
-
 budjetRouter.get("/", async (request:Request, response:Response) => {
     try {
         const budjets = await pool.query("SELECT * FROM budjets;");
@@ -30,7 +28,8 @@ budjetRouter.post("/", async (request:Request, response:Response) => {
     try {
         const {budjet_name} = request.body;
         const {budjet_balance} = request.body;
-        const newBudjet = await pool.query("INSERT INTO budjets (budjet_name, budjet_balance) VALUES ($1, $2) RETURNING *", [budjet_name, budjet_balance]);
+        const {cost_centres} = request.body;
+        const newBudjet = await pool.query("INSERT INTO budjets (budjet_name, budjet_balance, cost_centres) VALUES ($1, $2, $3) RETURNING *", [budjet_name, budjet_balance, cost_centres]);
         response.json(newBudjet.rows[0]);
     } catch (error) {
         console.error(error);
