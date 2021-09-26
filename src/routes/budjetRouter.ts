@@ -1,5 +1,6 @@
 import express, {Router, Request, Response} from "express";
 import Budjet from "./../models/budjet";
+import Cost_centre from "./../models/cost_centre";
 import pool from "./../db/db";
 
 const budjetRouter = Router();
@@ -28,7 +29,8 @@ budjetRouter.post("/", async (request:Request, response:Response) => {
     try {
         const {budjet_name} = request.body;
         const {budjet_balance} = request.body;
-        const {cost_centres} = request.body;
+        const cost_centres = request.body.cost_centres;
+        console.log(request.body);
         const newBudjet = await pool.query("INSERT INTO budjets (budjet_name, budjet_balance, cost_centres) VALUES ($1, $2, $3) RETURNING *", [budjet_name, budjet_balance, cost_centres]);
         response.json(newBudjet.rows[0]);
     } catch (error) {
